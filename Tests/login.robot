@@ -1,7 +1,10 @@
 *** Settings ***
 Documentation     Saucedemo test
 Library           SeleniumLibrary
-Library  OperatingSystem
+Library           JSONLibrary
+Library           OperatingSystem
+Library           BuiltIn
+Library           /Users/vianneeliseo/PycharmProjects/saucedemo-robot/Tests/lib/Inventory.py
 
 
 *** Variables ***
@@ -11,6 +14,9 @@ ${BROWSER}        Chrome
 ${USERNAME_FLD}  //*[@id='user-name']
 ${PASSWORD_FLD}  //*[@id='password']
 ${CLICK_BTN}  //*[@id='login-button']
+${BASE_DIR}       ${CURDIR}/..
+${JSON_FILE}      ${BASE_DIR}/tests/data/product.json
+
 
 #Inventory Elements
 ${KEBAB_OPTION}  //*[@id='react-burger-menu-btn']
@@ -42,6 +48,12 @@ The list of available products with correct details and elements should display
     Element Should be visible  ${FB_ICON}
     Element Should be visible  ${LINKEDIN_ICON}
     Element Text Should be  ${FOOTER_TEXT}  © 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy
+    Log    JSON File Path: ${JSON_FILE}
+
+    ${json_data}=    Load JSON From File    ${JSON_FILE}
+    ${product_list}=    Get Product List
+    Log    ${product_list}
+
 
 
 
