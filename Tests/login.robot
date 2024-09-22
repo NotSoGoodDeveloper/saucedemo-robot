@@ -4,7 +4,7 @@ Library           SeleniumLibrary
 Library           JSONLibrary
 Library           OperatingSystem
 Library           BuiltIn
-Library           /Users/vianneeliseo/PycharmProjects/saucedemo-robot/Tests/lib/Inventory.py
+Library          ./lib/Inventory.py
 
 
 *** Variables ***
@@ -52,8 +52,7 @@ The list of available products with correct details and elements should display
 
     ${json_data}=    Load JSON From File    ${JSON_FILE}
     ${product_list}=    Get Product List
-    Log    ${product_list}
-
+    Log  to console  ${product_list}
 
 
 
